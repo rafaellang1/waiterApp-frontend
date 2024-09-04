@@ -110,8 +110,14 @@ export function OrderModal({
               disabled={isLoading}
               onClick={onChangeOrderStatus}
             >
-              <span>👨‍🍳</span>
-              <strong>Iniciar produção</strong>
+              <span>
+                {order.status === 'WAITING' && '🧑‍🍳'}
+                {order.status === 'IN_PRODUCTION' && '✅'}
+              </span>
+              <strong>
+                {order.status === 'WAITING' && 'Iniciar Produção'}
+                {order.status === 'IN_PRODUCTION' && 'Concluir Pedido'}
+              </strong>
             </button>
           )}
 
@@ -121,7 +127,7 @@ export function OrderModal({
             onClick={onCancelOrder}
             disabled={isLoading }
           >
-              Cancelar Pedido
+            {order.status === 'DONE' && 'Limpar pedido'}
           </button>
         </Actions>
 
